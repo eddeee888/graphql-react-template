@@ -1,0 +1,16 @@
+query Books($input: PaginationInput!) {
+  books(input: $input) {
+    ... on BooksResult {
+      result {
+        id
+        isbn
+      }
+      pagination {
+        totalPageCount
+      }
+    }
+    ... on PayloadError {
+      error
+    }
+  }
+}

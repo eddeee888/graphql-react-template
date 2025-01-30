@@ -2,7 +2,7 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
   schema: "./schema/schema.generated.graphqls",
-  documents: ["src/**/*.graphql"],
+  documents: "src/**/*.graphql",
   ignoreNoDocuments: true,
   generates: {
     "./src/graphql/types.generated.ts": {
@@ -12,6 +12,19 @@ const config: CodegenConfig = {
           ID: { input: "string | number", output: "string" },
           DateTime: "string",
         },
+      },
+    },
+    "./src/": {
+      preset: "near-operation-file",
+      presetConfig: {
+        baseTypesPath: "./graphql/types.generated.ts",
+        extension: ".generated.ts",
+      },
+      plugins: ["typescript-operations", "typescript-react-apollo"],
+      config: {
+        enumAsTypes: true,
+        nonOptionalTypename: true,
+        documentMode: "documentNode",
       },
     },
   },

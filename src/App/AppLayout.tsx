@@ -7,6 +7,7 @@ export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
       <nav>
         <NavLink to="/">Home</NavLink> | <NavLink to="/books">Books</NavLink>
       </nav>
+      <hr />
       <main>{children ? children : <Outlet />}</main>
     </>
   );

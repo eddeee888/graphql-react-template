@@ -28,6 +28,14 @@ export type BookResult = {
   result?: Maybe<Book>;
 };
 
+export type BooksPayload = BooksResult | PayloadError;
+
+export type BooksResult = {
+  __typename?: 'BooksResult';
+  pagination: Pagination;
+  result: Array<Book>;
+};
+
 export type CharacterNode = {
   appearsIn: Array<Readable>;
   id: Scalars['ID']['output'];
@@ -67,6 +75,16 @@ export type MainCharacter = {
   screenName: Scalars['String']['output'];
 };
 
+export type Pagination = {
+  __typename?: 'Pagination';
+  totalPageCount: Scalars['Int']['output'];
+};
+
+export type PaginationInput = {
+  page?: InputMaybe<Scalars['Int']['input']>;
+  recordsPerPage?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type PayloadError = {
   __typename?: 'PayloadError';
   error: PayloadErrorType;
@@ -82,6 +100,7 @@ export enum PayloadErrorType {
 export type Query = {
   __typename?: 'Query';
   book: BookPayload;
+  books: BooksPayload;
   character?: Maybe<CharacterNode>;
   readable?: Maybe<Readable>;
   user?: Maybe<User>;
@@ -90,6 +109,11 @@ export type Query = {
 
 export type QueryBookArgs = {
   id: Scalars['ID']['input'];
+};
+
+
+export type QueryBooksArgs = {
+  input: PaginationInput;
 };
 
 
