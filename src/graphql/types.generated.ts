@@ -77,11 +77,17 @@ export type MainCharacter = {
 export type Mutation = {
   __typename?: 'Mutation';
   createBook: CreateBookPayload;
+  updateBook: UpdateBookPayload;
 };
 
 
 export type MutationCreateBookArgs = {
   input: CreateBookInput;
+};
+
+
+export type MutationUpdateBookArgs = {
+  input: UpdateBookInput;
 };
 
 export type Pagination = {
@@ -132,6 +138,18 @@ export type QueryCharacterArgs = {
 
 export type QueryUserArgs = {
   id: Scalars['ID']['input'];
+};
+
+export type UpdateBookInput = {
+  id: Scalars['ID']['input'];
+  isbn: Scalars['String']['input'];
+};
+
+export type UpdateBookPayload = PayloadError | UpdateBookResult;
+
+export type UpdateBookResult = {
+  __typename?: 'UpdateBookResult';
+  result: Book;
 };
 
 export type User = {

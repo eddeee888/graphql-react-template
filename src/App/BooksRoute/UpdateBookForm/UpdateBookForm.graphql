@@ -1,0 +1,27 @@
+query UpdateBookForm_Book($id: ID!) {
+  book(id: $id) {
+    ... on BookResult {
+      result {
+        id
+        isbn
+      }
+    }
+    ... on PayloadError {
+      error
+    }
+  }
+}
+
+mutation UpdateBookForm_UpdateBook($input: UpdateBookInput!) {
+  updateBook(input: $input) {
+    ... on UpdateBookResult {
+      result {
+        id
+        isbn
+      }
+    }
+    ... on PayloadError {
+      error
+    }
+  }
+}

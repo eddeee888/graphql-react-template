@@ -1,11 +1,14 @@
 import { Fragment, useState, type FC } from "react";
 import { useBooksQuery } from "./BooksRoute.generated";
 import { Link } from "react-router";
-import { CreateBook } from "./CreateBook";
+import { CreateBookForm } from "./CreateBookForm";
+import { UpdateBookForm } from "./UpdateBookForm";
 
 export const BooksRoute: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [shownForm, setShownForm] = useState<null | "create-book">(null);
+  const [shownForm, setShownForm] = useState<
+    null | "create-book" | { form: "update-book"; bookId: string }
+  >(null);
   const { data, loading, error, refetch } = useBooksQuery({
     variables: {
       input: {
@@ -64,7 +67,13 @@ export const BooksRoute: FC = () => {
                 <td>{book.id}</td>
                 <td>{book.isbn}</td>
                 <td>
-                  <button>✏️</button>
+                  <button
+                    onClick={() =>
+                      setShownForm({ form: "update-book", bookId: book.id })
+                    }
+                  >
+                    ✏️
+                  </button>
                 </td>
               </tr>
             );
@@ -92,11 +101,17 @@ export const BooksRoute: FC = () => {
       )}
       {shownForm === "create-book" && (
         <>
-          <br />
-          <br />
           <hr />
-          <h2>Create new book</h2>
-          <CreateBook onClose={() => setShownForm(null)} />
+          <CreateBookForm onClose={() => setShownForm(null)} />
+        </>
+      )}
+      {typeof shownForm === "object" && shownForm?.form === "update-book" && (
+        <>
+          <hr />
+          <UpdateBookForm
+            bookId={shownForm.bookId}
+            onClose={() => setShownForm(null)}
+          />
         </>
       )}
     </>
