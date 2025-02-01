@@ -37,38 +37,26 @@ export type BooksResult = {
 };
 
 export type CharacterNode = {
-  appearsIn: Array<Readable>;
   id: Scalars['ID']['output'];
-  lastAppearsIn?: Maybe<Readable>;
   mostRelatedCharacter?: Maybe<CharacterNode>;
   relatedCharacters: Array<CharacterNode>;
 };
 
 export type ExtraCharacter = CharacterNode & {
   __typename?: 'ExtraCharacter';
-  appearsIn: Array<Readable>;
   creditName: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  lastAppearsIn?: Maybe<Readable>;
   mostRelatedCharacter?: Maybe<CharacterNode>;
   relatedCharacters: Array<CharacterNode>;
 };
 
 export type Fighter = CharacterNode & MainCharacter & {
   __typename?: 'Fighter';
-  appearsIn: Array<Readable>;
   id: Scalars['ID']['output'];
-  lastAppearsIn?: Maybe<Readable>;
   mostRelatedCharacter?: Maybe<CharacterNode>;
   powerLevel: Scalars['Int']['output'];
   relatedCharacters: Array<CharacterNode>;
   screenName: Scalars['String']['output'];
-};
-
-export type Magazine = {
-  __typename?: 'Magazine';
-  id: Scalars['ID']['output'];
-  issueNumber: Scalars['Int']['output'];
 };
 
 export type MainCharacter = {
@@ -102,7 +90,6 @@ export type Query = {
   book: BookPayload;
   books: BooksPayload;
   character?: Maybe<CharacterNode>;
-  readable?: Maybe<Readable>;
   user?: Maybe<User>;
 };
 
@@ -122,21 +109,8 @@ export type QueryCharacterArgs = {
 };
 
 
-export type QueryReadableArgs = {
-  id: Scalars['ID']['input'];
-};
-
-
 export type QueryUserArgs = {
   id: Scalars['ID']['input'];
-};
-
-export type Readable = Magazine | ShortNovel;
-
-export type ShortNovel = {
-  __typename?: 'ShortNovel';
-  id: Scalars['ID']['output'];
-  summary: Scalars['String']['output'];
 };
 
 export type User = {
@@ -148,9 +122,7 @@ export type User = {
 
 export type Wizard = CharacterNode & MainCharacter & {
   __typename?: 'Wizard';
-  appearsIn: Array<Readable>;
   id: Scalars['ID']['output'];
-  lastAppearsIn?: Maybe<Readable>;
   mostRelatedCharacter?: Maybe<CharacterNode>;
   relatedCharacters: Array<CharacterNode>;
   screenName: Scalars['String']['output'];

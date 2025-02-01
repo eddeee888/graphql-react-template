@@ -10,6 +10,7 @@ export const BooksRoute: FC = () => {
         page: currentPage,
       },
     },
+    fetchPolicy: "cache-and-network",
     notifyOnNetworkStatusChange: true,
   });
 
