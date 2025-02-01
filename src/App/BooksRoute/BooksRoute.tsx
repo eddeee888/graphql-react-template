@@ -1,9 +1,11 @@
 import { Fragment, useState, type FC } from "react";
 import { useBooksQuery } from "./BooksRoute.generated";
 import { Link } from "react-router";
+import { CreateBook } from "./CreateBook";
 
 export const BooksRoute: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [shownForm, setShownForm] = useState<null | "create-book">(null);
   const { data, loading, error, refetch } = useBooksQuery({
     variables: {
       input: {
@@ -43,14 +45,33 @@ export const BooksRoute: FC = () => {
 
   return (
     <>
-      {refreshButton}
-
-      <ul>
-        {data.books.result.map((book) => {
-          return <li key={book.id}>{book.isbn}</li>;
-        })}
-      </ul>
-
+      {refreshButton} |{" "}
+      <button onClick={() => setShownForm("create-book")}>➕</button>
+      <br />
+      <br />
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.books.result.map((book) => {
+            return (
+              <tr key={book.id}>
+                <td>{book.id}</td>
+                <td>{book.isbn}</td>
+                <td>
+                  <button>✏️</button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <br />
       {Array.from(
         { length: data.books.pagination.totalPageCount },
         (_, index) => {
@@ -68,6 +89,15 @@ export const BooksRoute: FC = () => {
             </Fragment>
           );
         }
+      )}
+      {shownForm === "create-book" && (
+        <>
+          <br />
+          <br />
+          <hr />
+          <h2>Create new book</h2>
+          <CreateBook onClose={() => setShownForm(null)} />
+        </>
       )}
     </>
   );

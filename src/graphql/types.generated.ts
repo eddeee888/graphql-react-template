@@ -42,6 +42,17 @@ export type CharacterNode = {
   relatedCharacters: Array<CharacterNode>;
 };
 
+export type CreateBookInput = {
+  isbn: Scalars['String']['input'];
+};
+
+export type CreateBookPayload = CreateBookResult | PayloadError;
+
+export type CreateBookResult = {
+  __typename?: 'CreateBookResult';
+  result: Book;
+};
+
 export type ExtraCharacter = CharacterNode & {
   __typename?: 'ExtraCharacter';
   creditName: Scalars['String']['output'];
@@ -61,6 +72,16 @@ export type Fighter = CharacterNode & MainCharacter & {
 
 export type MainCharacter = {
   screenName: Scalars['String']['output'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createBook: CreateBookPayload;
+};
+
+
+export type MutationCreateBookArgs = {
+  input: CreateBookInput;
 };
 
 export type Pagination = {
