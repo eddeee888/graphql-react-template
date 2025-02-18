@@ -17,7 +17,7 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
     },
     fetchPolicy: "cache-and-network",
     onCompleted: (data) => {
-      if (data.book.__typename === "BookResult" && data.book.result) {
+      if (data.book.__typename === "BookResultOk" && data.book.result) {
         setFormState({ isbn: data.book.result.isbn });
       }
     },
@@ -36,14 +36,14 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
   if (
     queryBookResult.error ||
     !queryBookResult.data ||
-    queryBookResult.data.book.__typename === "PayloadError"
+    queryBookResult.data.book.__typename === "ResultError"
   ) {
     return <div>Error</div>;
   }
 
   return (
     <>
-      <h2>Update book</h2>
+      <h2>Edit Book</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -68,12 +68,12 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
         />
         <br />
         {updateBookResult.error ||
-        updateBookResult.data?.updateBook.__typename === "PayloadError" ? (
+        updateBookResult.data?.updateBook.__typename === "ResultError" ? (
           <div>Error occurred. Try again</div>
         ) : null}
         <br />
         <button type="submit">
-          {updateBookResult.loading ? "🚧" : "Update book"}
+          {updateBookResult.loading ? "..." : "Update book"}
         </button>{" "}
         | <button onClick={onClose}>Close</button>
       </form>

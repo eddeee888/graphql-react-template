@@ -1,12 +1,12 @@
 query UpdateBookForm_Book($id: ID!) {
   book(id: $id) {
-    ... on BookResult {
+    ... on BookResultOk {
       result {
         id
         isbn
       }
     }
-    ... on PayloadError {
+    ... on ResultError {
       error
     }
   }
@@ -14,13 +14,13 @@ query UpdateBookForm_Book($id: ID!) {
 
 mutation UpdateBookForm_UpdateBook($input: UpdateBookInput!) {
   updateBook(input: $input) {
-    ... on UpdateBookResult {
+    ... on UpdateBookResultOk {
       result {
         id
         isbn
       }
     }
-    ... on PayloadError {
+    ... on ResultError {
       error
     }
   }

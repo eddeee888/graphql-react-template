@@ -21,17 +21,17 @@ export type Book = {
   isbn: Scalars['String']['output'];
 };
 
-export type BookPayload = BookResult | PayloadError;
+export type BookResult = BookResultOk | ResultError;
 
-export type BookResult = {
-  __typename?: 'BookResult';
+export type BookResultOk = {
+  __typename?: 'BookResultOk';
   result?: Maybe<Book>;
 };
 
-export type BooksPayload = BooksResult | PayloadError;
+export type BooksResult = BooksResultOk | ResultError;
 
-export type BooksResult = {
-  __typename?: 'BooksResult';
+export type BooksResultOk = {
+  __typename?: 'BooksResultOk';
   pagination: Pagination;
   result: Array<Book>;
 };
@@ -46,10 +46,10 @@ export type CreateBookInput = {
   isbn: Scalars['String']['input'];
 };
 
-export type CreateBookPayload = CreateBookResult | PayloadError;
+export type CreateBookResult = CreateBookResultOk | ResultError;
 
-export type CreateBookResult = {
-  __typename?: 'CreateBookResult';
+export type CreateBookResultOk = {
+  __typename?: 'CreateBookResultOk';
   result: Book;
 };
 
@@ -76,8 +76,8 @@ export type MainCharacter = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createBook: CreateBookPayload;
-  updateBook: UpdateBookPayload;
+  createBook: CreateBookResult;
+  updateBook: UpdateBookResult;
 };
 
 
@@ -100,22 +100,10 @@ export type PaginationInput = {
   recordsPerPage?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type PayloadError = {
-  __typename?: 'PayloadError';
-  error: PayloadErrorType;
-};
-
-export enum PayloadErrorType {
-  ForbiddenError = 'FORBIDDEN_ERROR',
-  InputValidationError = 'INPUT_VALIDATION_ERROR',
-  NotFound = 'NOT_FOUND',
-  UnexpectedError = 'UNEXPECTED_ERROR'
-}
-
 export type Query = {
   __typename?: 'Query';
-  book: BookPayload;
-  books: BooksPayload;
+  book: BookResult;
+  books: BooksResult;
   character?: Maybe<CharacterNode>;
   user?: Maybe<User>;
 };
@@ -140,15 +128,27 @@ export type QueryUserArgs = {
   id: Scalars['ID']['input'];
 };
 
+export type ResultError = {
+  __typename?: 'ResultError';
+  error: ResultErrorType;
+};
+
+export enum ResultErrorType {
+  ForbiddenError = 'FORBIDDEN_ERROR',
+  InputValidationError = 'INPUT_VALIDATION_ERROR',
+  NotFound = 'NOT_FOUND',
+  UnexpectedError = 'UNEXPECTED_ERROR'
+}
+
 export type UpdateBookInput = {
   id: Scalars['ID']['input'];
   isbn: Scalars['String']['input'];
 };
 
-export type UpdateBookPayload = PayloadError | UpdateBookResult;
+export type UpdateBookResult = ResultError | UpdateBookResultOk;
 
-export type UpdateBookResult = {
-  __typename?: 'UpdateBookResult';
+export type UpdateBookResultOk = {
+  __typename?: 'UpdateBookResultOk';
   result: Book;
 };
 
