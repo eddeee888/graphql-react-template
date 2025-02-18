@@ -19,13 +19,13 @@ export const BooksRoute: FC = () => {
     notifyOnNetworkStatusChange: true,
   });
 
-  const refreshButton = <button onClick={() => refetch()}>🔄</button>;
+  const refreshButton = <button onClick={() => refetch()}>Reload</button>;
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (error || !data || data.books.__typename === "PayloadError") {
+  if (error || !data || data.books.__typename === "ResultError") {
     return (
       <>
         {refreshButton}
@@ -49,10 +49,10 @@ export const BooksRoute: FC = () => {
   return (
     <>
       {refreshButton} |{" "}
-      <button onClick={() => setShownForm("create-book")}>➕</button>
+      <button onClick={() => setShownForm("create-book")}>Create book</button>
       <br />
       <br />
-      <table>
+      <table border={1}>
         <thead>
           <tr>
             <th>ID</th>
@@ -72,7 +72,7 @@ export const BooksRoute: FC = () => {
                       setShownForm({ form: "update-book", bookId: book.id })
                     }
                   >
-                    ✏️
+                    Edit
                   </button>
                 </td>
               </tr>
@@ -97,7 +97,7 @@ export const BooksRoute: FC = () => {
               |{" "}
             </Fragment>
           );
-        }
+        },
       )}
       {shownForm === "create-book" && (
         <>

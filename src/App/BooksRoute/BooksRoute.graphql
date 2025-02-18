@@ -1,6 +1,6 @@
 query Books($input: PaginationInput!) {
   books(input: $input) {
-    ... on BooksResult {
+    ... on BooksResultOk {
       result {
         id
         isbn
@@ -9,7 +9,7 @@ query Books($input: PaginationInput!) {
         totalPageCount
       }
     }
-    ... on PayloadError {
+    ... on ResultError {
       error
     }
   }

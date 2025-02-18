@@ -1,16 +1,20 @@
 {
-  "name": "react-graphql-template",
+  "name": "graphql-react",
   "private": true,
   "version": "0.0.0",
+  "repository": "git@github.com:eddeee888/graphql-react-template.git",
+  "author": "Eddy Nguyen <ch@eddeee888.me>",
+  "license": "MIT",
   "type": "module",
   "scripts": {
+    "start:server": "vite",
+    "start:codegen": "graphql-codegen --watch",
+    "dev": "run-p -l start:codegen start:server",
     "codegen": "graphql-codegen",
-    "codegen:watch": "graphql-codegen --watch",
-    "dev": "vite",
+    "preview": "vite preview",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "preview": "vite preview"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@apollo/client": "3.12.8",
@@ -32,6 +36,7 @@
     "eslint-plugin-react-hooks": "5.0.0",
     "eslint-plugin-react-refresh": "0.4.16",
     "globals": "15.14.0",
+    "npm-run-all2": "7.0.2",
     "prettier": "3.4.2",
     "typescript": "5.7.3",
     "typescript-eslint": "8.18.2",

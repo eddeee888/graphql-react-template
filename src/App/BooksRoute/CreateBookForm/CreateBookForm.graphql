@@ -1,12 +1,12 @@
 mutation CreateBook($input: CreateBookInput!) {
   createBook(input: $input) {
-    ... on CreateBookResult {
+    ... on CreateBookResultOk {
       result {
         id
         isbn
       }
     }
-    ... on PayloadError {
+    ... on ResultError {
       error
     }
   }

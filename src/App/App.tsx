@@ -6,7 +6,7 @@ import { BooksRoute } from "./BooksRoute";
 import { BookRoute } from "./BookRoute";
 
 const apolloClient = new ApolloClient({
-  uri: "http://localhost:3000/graphql", // https://github.com/eddeee888/graphql-server-template
+  uri: "http://localhost:4488/graphql", // https://github.com/eddeee888/graphql-server-template
   cache: new InMemoryCache(),
 });
 

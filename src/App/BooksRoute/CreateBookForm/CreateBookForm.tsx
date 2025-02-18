@@ -15,7 +15,7 @@ export const CreateBookForm: FC<{ onClose: () => void }> = ({ onClose }) => {
 
   return (
     <>
-      <h2>Create new book</h2>
+      <h2>Create Book</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -39,11 +39,11 @@ export const CreateBookForm: FC<{ onClose: () => void }> = ({ onClose }) => {
           }
         />
         <br />
-        {error || data?.createBook.__typename === "PayloadError" ? (
+        {error || data?.createBook.__typename === "ResultError" ? (
           <div>Error occurred. Try again</div>
         ) : null}
         <br />
-        <button type="submit">{loading ? "🚧" : "Create book"}</button> |{" "}
+        <button type="submit">{loading ? "..." : "Create book"}</button> |{" "}
         <button onClick={onClose}>Close</button>
       </form>
     </>
