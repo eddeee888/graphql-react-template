@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { AppLayout } from "./AppLayout";
 import { BooksRoute } from "./BooksRoute";
-import { BookRoute } from "./BookRoute";
 
 const apolloClient = new ApolloClient({
   uri: "http://localhost:4488/graphql", // https://github.com/eddeee888/graphql-server-template
@@ -15,18 +14,11 @@ export const App: FC = () => {
     <ApolloProvider client={apolloClient}>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <AppLayout>
-                <div>Hello</div>
-              </AppLayout>
-            }
-          />
-
+          <Route path="/" element={<AppLayout />}>
+            <Route index element={<h1>Hello there!</h1>} />
+          </Route>
           <Route path="/books" element={<AppLayout />}>
             <Route index element={<BooksRoute />} />
-            <Route path=":id" element={<BookRoute />} />
           </Route>
         </Routes>
       </BrowserRouter>

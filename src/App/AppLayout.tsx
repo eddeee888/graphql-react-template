@@ -1,14 +1,16 @@
-import type { FC, ReactNode } from "react";
+import type { FC } from "react";
 import { NavLink, Outlet } from "react-router";
 
-export const AppLayout: FC<{ children?: ReactNode }> = ({ children }) => {
+export const AppLayout: FC = () => {
   return (
     <>
       <nav>
         <NavLink to="/">Home</NavLink> | <NavLink to="/books">Books</NavLink>
       </nav>
       <hr />
-      <main>{children ? children : <Outlet />}</main>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 };
