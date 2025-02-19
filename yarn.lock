@@ -3447,7 +3447,7 @@ pidtree@^0.6.0:
   resolved "https://registry.yarnpkg.com/pidtree/-/pidtree-0.6.0.tgz#90ad7b6d42d5841e69e0a2419ef38f8883aa057c"
   integrity sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==
 
-postcss@^8.5.1:
+postcss@^8.5.2:
   version "8.5.2"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.2.tgz#e7b99cb9d2ec3e8dd424002e7c16517cb2b846bd"
   integrity sha512-MjOadfU3Ys9KYoX0AdkBlFEF1Vx37uCCeN4ZHnmwm9FfpbsGWMZeBLMmmpY+6Ocqod7mkdZ0DT31OlbsFrLlkA==
@@ -4015,13 +4015,13 @@ value-or-promise@^1.0.11, value-or-promise@^1.0.12:
   resolved "https://registry.yarnpkg.com/value-or-promise/-/value-or-promise-1.0.12.tgz#0e5abfeec70148c78460a849f6b003ea7986f15c"
   integrity sha512-Z6Uz+TYwEqE7ZN50gwn+1LCVo9ZVrpxRPOhOLnncYkY1ZzOYtrX8Fwf/rFktZ8R5mJms6EZf5TqNOMeZmnPq9Q==
 
-vite@6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-6.1.0.tgz#00a4e99a23751af98a2e4701c65ba89ce23858a6"
-  integrity sha512-RjjMipCKVoR4hVfPY6GQTgveinjNuyLw+qruksLDvA5ktI1150VmcMBKmQaEWJhg/j6Uaf6dNCNA0AfdzUb/hQ==
+vite@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-6.1.1.tgz#c1f221749298357b9230782a04483e60ad83c8db"
+  integrity sha512-4GgM54XrwRfrOp297aIYspIti66k56v16ZnqHvrIM7mG+HjDlAwS7p+Srr7J6fGvEdOJ5JcQ/D9T7HhtdXDTzA==
   dependencies:
     esbuild "^0.24.2"
-    postcss "^8.5.1"
+    postcss "^8.5.2"
     rollup "^4.30.1"
   optionalDependencies:
     fsevents "~2.3.3"
