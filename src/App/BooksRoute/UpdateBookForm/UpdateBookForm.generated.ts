@@ -10,13 +10,6 @@ export type UpdateBookForm_BookQueryVariables = Types.Exact<{
 
 export type UpdateBookForm_BookQuery = { __typename: 'Query', book: { __typename: 'BookResultOk', result?: { __typename: 'Book', id: string, isbn: string } | null } | { __typename: 'ResultError', error: Types.ResultErrorType } };
 
-export type UpdateBookForm_UpdateBookMutationVariables = Types.Exact<{
-  input: Types.UpdateBookInput;
-}>;
-
-
-export type UpdateBookForm_UpdateBookMutation = { __typename: 'Mutation', updateBook: { __typename: 'ResultError', error: Types.ResultErrorType } | { __typename: 'UpdateBookResultOk', result: { __typename: 'Book', id: string, isbn: string } } };
-
 
 export const UpdateBookForm_BookDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"UpdateBookForm_Book"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"book"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BookResultOk"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"result"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isbn"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ResultError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"error"}}]}}]}}]}}]} as unknown as DocumentNode;
 
@@ -52,30 +45,3 @@ export type UpdateBookForm_BookQueryHookResult = ReturnType<typeof useUpdateBook
 export type UpdateBookForm_BookLazyQueryHookResult = ReturnType<typeof useUpdateBookForm_BookLazyQuery>;
 export type UpdateBookForm_BookSuspenseQueryHookResult = ReturnType<typeof useUpdateBookForm_BookSuspenseQuery>;
 export type UpdateBookForm_BookQueryResult = Apollo.QueryResult<UpdateBookForm_BookQuery, UpdateBookForm_BookQueryVariables>;
-export const UpdateBookForm_UpdateBookDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateBookForm_UpdateBook"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateBookInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateBook"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateBookResultOk"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"result"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isbn"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ResultError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"error"}}]}}]}}]}}]} as unknown as DocumentNode;
-export type UpdateBookForm_UpdateBookMutationFn = Apollo.MutationFunction<UpdateBookForm_UpdateBookMutation, UpdateBookForm_UpdateBookMutationVariables>;
-
-/**
- * __useUpdateBookForm_UpdateBookMutation__
- *
- * To run a mutation, you first call `useUpdateBookForm_UpdateBookMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateBookForm_UpdateBookMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateBookFormUpdateBookMutation, { data, loading, error }] = useUpdateBookForm_UpdateBookMutation({
- *   variables: {
- *      input: // value for 'input'
- *   },
- * });
- */
-export function useUpdateBookForm_UpdateBookMutation(baseOptions?: Apollo.MutationHookOptions<UpdateBookForm_UpdateBookMutation, UpdateBookForm_UpdateBookMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateBookForm_UpdateBookMutation, UpdateBookForm_UpdateBookMutationVariables>(UpdateBookForm_UpdateBookDocument, options);
-      }
-export type UpdateBookForm_UpdateBookMutationHookResult = ReturnType<typeof useUpdateBookForm_UpdateBookMutation>;
-export type UpdateBookForm_UpdateBookMutationResult = Apollo.MutationResult<UpdateBookForm_UpdateBookMutation>;
-export type UpdateBookForm_UpdateBookMutationOptions = Apollo.BaseMutationOptions<UpdateBookForm_UpdateBookMutation, UpdateBookForm_UpdateBookMutationVariables>;
