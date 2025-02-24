@@ -65,7 +65,9 @@ export const BooksRoute: FC = () => {
             return (
               <tr key={book.id}>
                 <td>{book.id}</td>
-                <td>{book.isbn}</td>
+                <td>
+                  <Link to={`/books/${book.id}`}>{book.isbn}</Link>
+                </td>
                 <td>
                   <button
                     onClick={() =>
@@ -97,7 +99,7 @@ export const BooksRoute: FC = () => {
               |{" "}
             </Fragment>
           );
-        },
+        }
       )}
       {shownForm === "create-book" && (
         <>

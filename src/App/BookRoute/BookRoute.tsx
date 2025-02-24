@@ -1,11 +1,13 @@
 import type { FC } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useBookDetailsQuery } from "./BookRoute.generated";
 
 export const BookRoute: FC = () => {
   const { bookId } = useParams<{ bookId: string }>();
 
   if (!bookId) {
+    // Realistically it won't be here because this route is `/books/:bookId`
+    // And if there's no bookId, it renders `/books`
     return null;
   }
 
@@ -15,24 +17,43 @@ export const BookRoute: FC = () => {
 const BookDetails: FC<{ bookId: string }> = ({ bookId }) => {
   const { data, loading, error } = useBookDetailsQuery({
     variables: { bookId },
+    fetchPolicy: "cache-and-network",
   });
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <div>Loading...</div>;
   }
 
   if (error || !data || data.book.__typename === "ResultError") {
-    return <p>Error!</p>;
+    return <div>Error!</div>;
   }
 
   if (!data.book.result) {
-    return <p>Book not found!</p>;
+    return <div>Book not found!</div>;
   }
+
+  const book = data.book.result;
 
   return (
     <>
       <h1>Book (ID: {data.book.result.id})</h1>
-      <p>ISBN: {data.book.result.isbn}</p>
+      <div>
+        ISBN: <b>{data.book.result.isbn}</b>
+      </div>
+
+      <hr />
+
+      {book.previousBookInSeries && (
+        <>
+          <Link to={`/books/${book.previousBookInSeries.id}`}>Previous</Link>
+        </>
+      )}
+
+      {book.previousBookInSeries && book.nextBookInSeries && <> | </>}
+
+      {book.nextBookInSeries && (
+        <Link to={`/books/${book.nextBookInSeries.id}`}>Next</Link>
+      )}
     </>
   );
 };

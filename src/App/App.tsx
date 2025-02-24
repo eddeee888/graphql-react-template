@@ -16,7 +16,7 @@ export const App: FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppLayout />}>
-            <Route index element={<h1>Hello there!</h1>} />
+            <Route index element={<h1>Welcome to Ermahzern!</h1>} />
           </Route>
           <Route path="/books" element={<AppLayout />}>
             <Route index element={<BooksRoute />} />
