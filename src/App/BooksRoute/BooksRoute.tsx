@@ -99,7 +99,7 @@ export const BooksRoute: FC = () => {
               |{" "}
             </Fragment>
           );
-        }
+        },
       )}
       {shownForm === "create-book" && (
         <>
