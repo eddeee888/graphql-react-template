@@ -19,6 +19,8 @@ export type Book = {
   __typename?: 'Book';
   id: Scalars['ID']['output'];
   isbn: Scalars['String']['output'];
+  nextBookInSeries?: Maybe<Book>;
+  previousBookInSeries?: Maybe<Book>;
 };
 
 export type BookResult = BookResultOk | ResultError;
