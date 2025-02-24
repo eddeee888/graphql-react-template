@@ -11,17 +11,3 @@ query UpdateBookForm_Book($id: ID!) {
     }
   }
 }
-
-mutation UpdateBookForm_UpdateBook($input: UpdateBookInput!) {
-  updateBook(input: $input) {
-    ... on UpdateBookResultOk {
-      result {
-        id
-        isbn
-      }
-    }
-    ... on ResultError {
-      error
-    }
-  }
-}

@@ -1,8 +1,5 @@
 import { useState, type FC } from "react";
-import {
-  useUpdateBookForm_BookQuery,
-  useUpdateBookForm_UpdateBookMutation,
-} from "./UpdateBookForm.generated";
+import { useUpdateBookForm_BookQuery } from "./UpdateBookForm.generated";
 
 export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
   bookId,
@@ -15,21 +12,25 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
     variables: {
       id: bookId,
     },
-    fetchPolicy: "cache-and-network",
     onCompleted: (data) => {
       if (data.book.__typename === "BookResultOk" && data.book.result) {
         setFormState({ isbn: data.book.result.isbn });
       }
     },
   });
-  const [updateBook, updateBookResult] = useUpdateBookForm_UpdateBookMutation({
-    onCompleted: (data) => {
-      if (data.updateBook.__typename === "UpdateBookResultOk") {
-        alert("Book updated!");
-        onClose();
-      }
-    },
-  });
+
+  /**
+   * Exercise 2:
+   * Update a book, and make sure the affected book ISBN is updated in the table
+   * Hint: Use `Mutation.updateBook`
+   */
+  const updateBook: any = () => {};
+  const updateBookResult: any = {
+    error: undefined,
+    loading: false,
+    data: {},
+  };
+  /* End */
 
   if (queryBookResult.loading) {
     return <div>Loading...</div>;

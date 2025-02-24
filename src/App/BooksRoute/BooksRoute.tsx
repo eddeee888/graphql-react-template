@@ -1,5 +1,4 @@
 import { Fragment, useState, type FC } from "react";
-import { useBooksQuery } from "./BooksRoute.generated";
 import { Link } from "react-router";
 import { CreateBookForm } from "./CreateBookForm";
 import { UpdateBookForm } from "./UpdateBookForm";
@@ -9,15 +8,21 @@ export const BooksRoute: FC = () => {
   const [shownForm, setShownForm] = useState<
     null | "create-book" | { form: "update-book"; bookId: string }
   >(null);
-  const { data, loading, error, refetch } = useBooksQuery({
-    variables: {
-      input: {
-        page: currentPage,
-      },
+
+  /**
+   * Demo 1: Dynamically query books from server
+   */
+  const refetch = () => {};
+  const loading = false;
+  const error = undefined;
+  const data: any = {
+    books: {
+      __typename: "ResultSuccess",
+      result: [],
+      pagination: { totalPageCount: 0 },
     },
-    fetchPolicy: "cache-and-network",
-    notifyOnNetworkStatusChange: true,
-  });
+  };
+  /* End */
 
   return (
     <>

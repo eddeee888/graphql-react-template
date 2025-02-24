@@ -1,15 +1,14 @@
 import { useState, type FC } from "react";
-import { useCreateBookMutation } from "./CreateBookForm.generated";
 
 export const CreateBookForm: FC<{ onClose: () => void }> = ({ onClose }) => {
-  const [createBook, { loading, data, error }] = useCreateBookMutation({
-    onCompleted: (data) => {
-      if (data.createBook.__typename === "CreateBookResultOk") {
-        alert("Book created!");
-        onClose();
-      }
-    },
-  });
+  /**
+   * Demo 2: Create book
+   */
+  const createBook: any = () => {};
+  const loading = false;
+  const data: any = {};
+  const error = undefined;
+  /* End */
 
   const [formState, setFormState] = useState<{ isbn: string }>({
     isbn: "",

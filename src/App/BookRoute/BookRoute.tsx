@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { Link, useParams } from "react-router";
-import { useBookDetailsQuery } from "./BookRoute.generated";
 
 export const BookRoute: FC = () => {
   const { bookId } = useParams<{ bookId: string }>();
@@ -15,10 +14,20 @@ export const BookRoute: FC = () => {
 };
 
 const BookDetails: FC<{ bookId: string }> = ({ bookId }) => {
-  const { data, loading, error } = useBookDetailsQuery({
-    variables: { bookId },
-    fetchPolicy: "cache-and-network",
-  });
+  /**
+   * Exercise 1:
+   * Use `bookId` to dynamically query book details from the server, including previous and next book IDs in the series
+   * Hint: Use `Query.book`
+   */
+  const loading = false;
+  const error = undefined;
+  const data: any = {
+    book: {
+      __typename: "ResultSuccess",
+      result: null,
+    },
+  };
+  /* End */
 
   if (loading) {
     return <div>Loading...</div>;
