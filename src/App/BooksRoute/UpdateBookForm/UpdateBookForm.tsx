@@ -1,8 +1,5 @@
 import { useState, type FC } from "react";
-import {
-  useUpdateBookForm_BookQuery,
-  useUpdateBookForm_UpdateBookMutation,
-} from "./UpdateBookForm.generated";
+import { useUpdateBookForm_BookQuery } from "./UpdateBookForm.generated";
 
 export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
   bookId,
@@ -22,14 +19,19 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
       }
     },
   });
-  const [updateBook, updateBookResult] = useUpdateBookForm_UpdateBookMutation({
-    onCompleted: (data) => {
-      if (data.updateBook.__typename === "UpdateBookResultOk") {
-        alert("Book updated!");
-        onClose();
-      }
+
+  /* Exercise 2: Update a book */
+  const updateBook: any = () => {};
+  const updateBookResult: any = {
+    error: undefined,
+    loading: false,
+    data: {
+      updateBook: {
+        __typename: "PLACEHOLDER",
+      },
     },
-  });
+  };
+  /* End */
 
   if (queryBookResult.loading) {
     return <div>Loading...</div>;
