@@ -19,11 +19,9 @@ export const BooksRoute: FC = () => {
     notifyOnNetworkStatusChange: true,
   });
 
-  const refreshButton = <button onClick={() => refetch()}>Reload</button>;
-
   return (
     <>
-      {refreshButton} |{" "}
+      <button onClick={() => refetch()}>Reload</button> |{" "}
       <button onClick={() => setShownForm("create-book")}>Create book</button>
       <br />
       <br />
@@ -33,23 +31,14 @@ export const BooksRoute: FC = () => {
         }
 
         if (error || !data || data.books.__typename === "ResultError") {
-          return (
-            <>
-              {refreshButton}
-              <div>Error</div>
-            </>
-          );
+          return <div>Error</div>;
         }
 
         if (data.books.result.length === 0) {
           return (
-            <>
-              {refreshButton}
-
-              <div>
-                No books. Create book <Link to="/books/create">here</Link>
-              </div>
-            </>
+            <div>
+              No books. Create book <Link to="/books/create">here</Link>
+            </div>
           );
         }
 
