@@ -44,9 +44,7 @@ const BookDetails: FC<{ bookId: string }> = ({ bookId }) => {
       <hr />
 
       {book.previousBookInSeries && (
-        <>
-          <Link to={`/books/${book.previousBookInSeries.id}`}>Previous</Link>
-        </>
+        <Link to={`/books/${book.previousBookInSeries.id}`}>Previous</Link>
       )}
 
       {book.previousBookInSeries && book.nextBookInSeries && <> | </>}
