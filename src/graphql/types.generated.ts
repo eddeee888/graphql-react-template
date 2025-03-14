@@ -135,12 +135,11 @@ export type ResultError = {
   error: ResultErrorType;
 };
 
-export enum ResultErrorType {
-  ForbiddenError = 'FORBIDDEN_ERROR',
-  InputValidationError = 'INPUT_VALIDATION_ERROR',
-  NotFound = 'NOT_FOUND',
-  UnexpectedError = 'UNEXPECTED_ERROR'
-}
+export type ResultErrorType =
+  | 'FORBIDDEN_ERROR'
+  | 'INPUT_VALIDATION_ERROR'
+  | 'NOT_FOUND'
+  | 'UNEXPECTED_ERROR';
 
 export type UpdateBookInput = {
   id: Scalars['ID']['input'];
