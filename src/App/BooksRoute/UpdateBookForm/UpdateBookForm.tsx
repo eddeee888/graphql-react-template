@@ -23,9 +23,11 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
     },
   });
   const [updateBook, updateBookResult] = useUpdateBookForm_UpdateBookMutation({
-    onCompleted: () => {
-      alert("Book updated!");
-      onClose();
+    onCompleted: (data) => {
+      if (data.updateBook.__typename === "UpdateBookResultOk") {
+        alert("Book updated!");
+        onClose();
+      }
     },
   });
 
