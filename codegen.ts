@@ -12,6 +12,7 @@ const config: CodegenConfig = {
           ID: { input: "string | number", output: "string" },
           DateTime: "string",
         },
+        enumsAsTypes: true,
       },
     },
     "./src/": {
@@ -22,7 +23,6 @@ const config: CodegenConfig = {
       },
       plugins: ["typescript-operations", "typescript-react-apollo"],
       config: {
-        enumAsTypes: true,
         nonOptionalTypename: true,
         documentMode: "documentNode",
       },

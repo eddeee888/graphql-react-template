@@ -3,9 +3,11 @@ import { useCreateBookMutation } from "./CreateBookForm.generated";
 
 export const CreateBookForm: FC<{ onClose: () => void }> = ({ onClose }) => {
   const [createBook, { loading, data, error }] = useCreateBookMutation({
-    onCompleted: () => {
-      alert("Book created!");
-      onClose();
+    onCompleted: (data) => {
+      if (data.createBook.__typename === "CreateBookResultOk") {
+        alert("Book created!");
+        onClose();
+      }
     },
   });
 
