@@ -8,14 +8,20 @@ export type UpdateBookForm_BookQueryVariables = Types.Exact<{
 }>;
 
 
-export type UpdateBookForm_BookQuery = { __typename: 'Query', book: { __typename: 'BookResultOk', result?: { __typename: 'Book', id: string, isbn: string } | null } | { __typename: 'ResultError', error: Types.ResultErrorType } };
+export type UpdateBookForm_BookQuery = { __typename: 'Query', book:
+    | { __typename: 'BookResultOk', result?: { __typename: 'Book', id: string, isbn: string } | null }
+    | { __typename: 'ResultError', error: Types.ResultErrorType }
+   };
 
 export type UpdateBookForm_UpdateBookMutationVariables = Types.Exact<{
   input: Types.UpdateBookInput;
 }>;
 
 
-export type UpdateBookForm_UpdateBookMutation = { __typename: 'Mutation', updateBook: { __typename: 'ResultError', error: Types.ResultErrorType } | { __typename: 'UpdateBookResultOk', result: { __typename: 'Book', id: string, isbn: string } } };
+export type UpdateBookForm_UpdateBookMutation = { __typename: 'Mutation', updateBook:
+    | { __typename: 'ResultError', error: Types.ResultErrorType }
+    | { __typename: 'UpdateBookResultOk', result: { __typename: 'Book', id: string, isbn: string } }
+   };
 
 
 export const UpdateBookForm_BookDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"UpdateBookForm_Book"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"book"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BookResultOk"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"result"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isbn"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ResultError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"error"}}]}}]}}]}}]} as unknown as DocumentNode;
