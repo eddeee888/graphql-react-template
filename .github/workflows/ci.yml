@@ -17,13 +17,8 @@ jobs:
     name: Test
     runs-on: ubuntu-24.04
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.node-version }}
           cache: yarn
@@ -31,15 +26,6 @@ jobs:
 
       - name: Install deps
         run: yarn install --prefer-offline --frozen-lockfile
-
-      - name: Cache node_modules
-        uses: actions/cache@v4
-        id: cache-node-modules
-        with:
-          path: node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            node-modules-${{ runner.os }}-
 
       - name: Codegen & check
         run: ./bin/codegen-check.sh
