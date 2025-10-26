@@ -1,8 +1,9 @@
 import { useState, type FC } from "react";
-import { useCreateBookMutation } from "./CreateBookForm.generated";
+import { useMutation } from "@apollo/client/react";
+import { CreateBookDoc } from "./CreateBookForm.graphql";
 
 export const CreateBookForm: FC<{ onClose: () => void }> = ({ onClose }) => {
-  const [createBook, { loading, data, error }] = useCreateBookMutation({
+  const [createBook, { loading, data, error }] = useMutation(CreateBookDoc, {
     onCompleted: (completedData) => {
       if (completedData.createBook.__typename === "CreateBookResultOk") {
         alert("Book created!");

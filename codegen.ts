@@ -2,29 +2,21 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
   schema: "src/**/*.graphqls",
-  documents: "src/**/*.graphql",
+  documents: "src/**/*.graphql.ts",
   ignoreNoDocuments: true,
   generates: {
-    "./src/graphql/types.generated.ts": {
-      plugins: ["typescript"],
-      config: {
-        scalars: {
-          ID: { input: "string | number", output: "string" },
-          DateTime: "string",
-        },
-        enumsAsTypes: true,
-      },
-    },
-    "./src/": {
-      preset: "near-operation-file",
+    "src/gql/": {
+      preset: "client",
       presetConfig: {
-        baseTypesPath: "./graphql/types.generated.ts",
-        extension: ".generated.ts",
+        fragmentMasking: false,
       },
-      plugins: ["typescript-operations", "typescript-react-apollo"],
       config: {
+        avoidOptionals: {
+          // Use `null` for nullable fields instead of optionals
+          field: true,
+        },
+        skipTypeNameForRoot: true,
         nonOptionalTypename: true,
-        documentMode: "documentNode",
       },
     },
   },

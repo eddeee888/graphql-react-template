@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { Link, useParams } from "react-router";
-import { useBookDetailsQuery } from "./BookRoute.generated";
+import { useQuery } from "@apollo/client/react";
+import { BookDetailsDoc } from "./BookRoute.graphql";
 
 export const BookRoute: FC = () => {
   const { bookId } = useParams<{ bookId: string }>();
@@ -15,7 +16,7 @@ export const BookRoute: FC = () => {
 };
 
 const BookDetails: FC<{ bookId: string }> = ({ bookId }) => {
-  const { data, loading, error } = useBookDetailsQuery({
+  const { data, loading, error } = useQuery(BookDetailsDoc, {
     variables: { bookId },
     fetchPolicy: "cache-and-network",
   });
