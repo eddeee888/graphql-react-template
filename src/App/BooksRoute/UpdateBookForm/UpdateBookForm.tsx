@@ -50,7 +50,7 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
         onSubmit={(e) => {
           e.preventDefault();
 
-          updateBook({
+          void updateBook({
             variables: {
               input: {
                 id: bookId,

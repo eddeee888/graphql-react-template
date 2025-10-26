@@ -3,8 +3,8 @@ import { useCreateBookMutation } from "./CreateBookForm.generated";
 
 export const CreateBookForm: FC<{ onClose: () => void }> = ({ onClose }) => {
   const [createBook, { loading, data, error }] = useCreateBookMutation({
-    onCompleted: (data) => {
-      if (data.createBook.__typename === "CreateBookResultOk") {
+    onCompleted: (completedData) => {
+      if (completedData.createBook.__typename === "CreateBookResultOk") {
         alert("Book created!");
         onClose();
       }
@@ -22,7 +22,7 @@ export const CreateBookForm: FC<{ onClose: () => void }> = ({ onClose }) => {
         onSubmit={(e) => {
           e.preventDefault();
 
-          createBook({
+          void createBook({
             variables: {
               input: {
                 isbn: formState.isbn,
