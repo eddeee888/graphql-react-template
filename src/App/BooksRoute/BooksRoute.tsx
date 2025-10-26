@@ -1,15 +1,16 @@
 import { Fragment, useState, type FC } from "react";
-import { useBooksQuery } from "./BooksRoute.generated";
 import { Link } from "react-router";
 import { CreateBookForm } from "./CreateBookForm";
 import { UpdateBookForm } from "./UpdateBookForm";
+import { useQuery } from "@apollo/client/react";
+import { BooksDoc } from "./BooksRoute.graphql";
 
 export const BooksRoute: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [shownForm, setShownForm] = useState<
     null | "create-book" | { form: "update-book"; bookId: string }
   >(null);
-  const { data, loading, error, refetch } = useBooksQuery({
+  const { data, loading, error, refetch } = useQuery(BooksDoc, {
     variables: {
       input: {
         page: currentPage,

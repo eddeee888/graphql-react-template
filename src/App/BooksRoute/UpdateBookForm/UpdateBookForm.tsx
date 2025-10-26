@@ -1,8 +1,9 @@
 import { useState, type FC } from "react";
 import {
-  useUpdateBookForm_BookQuery,
-  useUpdateBookForm_UpdateBookMutation,
-} from "./UpdateBookForm.generated";
+  UpdateBookFormBookDoc,
+  UpdateBookFormUpdateBookDoc,
+} from "./UpdateBookForm.graphql";
+import { useMutation, useQuery } from "@apollo/client";
 
 export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
   bookId,
@@ -11,7 +12,7 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
   const [formState, setFormState] = useState<{ isbn: string }>({
     isbn: "",
   });
-  const queryBookResult = useUpdateBookForm_BookQuery({
+  const queryBookResult = useQuery(UpdateBookFormBookDoc, {
     variables: {
       id: bookId,
     },
@@ -22,14 +23,17 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
       }
     },
   });
-  const [updateBook, updateBookResult] = useUpdateBookForm_UpdateBookMutation({
-    onCompleted: (data) => {
-      if (data.updateBook.__typename === "UpdateBookResultOk") {
-        alert("Book updated!");
-        onClose();
-      }
+  const [updateBook, updateBookResult] = useMutation(
+    UpdateBookFormUpdateBookDoc,
+    {
+      onCompleted: (data) => {
+        if (data.updateBook.__typename === "UpdateBookResultOk") {
+          alert("Book updated!");
+          onClose();
+        }
+      },
     },
-  });
+  );
 
   if (queryBookResult.loading) {
     return <div>Loading...</div>;

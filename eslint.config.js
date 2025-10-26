@@ -7,7 +7,7 @@ export default defineConfig(
   {
     ignores: [
       "dist",
-      "src/**/*.generated.*",
+      "src/gql/*.ts",
       "eslint.config.js",
       "graphql.config.ts",
       "codegen.ts",
