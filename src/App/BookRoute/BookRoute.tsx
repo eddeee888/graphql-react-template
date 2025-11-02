@@ -37,9 +37,9 @@ const BookDetails: FC<{ bookId: string }> = ({ bookId }) => {
 
   return (
     <>
-      <h1>Book (ID: {data.book.result.id})</h1>
+      <h1>Book (ID: {book.id})</h1>
       <div>
-        ISBN: <b>{data.book.result.isbn}</b>
+        ISBN: <b>{book.isbn}</b>
       </div>
 
       <hr />
