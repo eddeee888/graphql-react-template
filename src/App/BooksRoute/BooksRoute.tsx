@@ -8,8 +8,10 @@ import { BooksDoc } from "./BooksRoute.graphql";
 export const BooksRoute: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [shownForm, setShownForm] = useState<
-    null | "create-book" | { form: "update-book"; bookId: string }
-  >(null);
+    | { form: "none" }
+    | { form: "create-book" }
+    | { form: "update-book"; bookId: string }
+  >({ form: "none" });
   const { data, loading, error, refetch } = useQuery(BooksDoc, {
     variables: {
       input: {
@@ -23,7 +25,9 @@ export const BooksRoute: FC = () => {
   return (
     <>
       <button onClick={() => refetch()}>Reload</button> |{" "}
-      <button onClick={() => setShownForm("create-book")}>Create book</button>
+      <button onClick={() => setShownForm({ form: "create-book" })}>
+        Create book
+      </button>
       <br />
       <br />
       {(function renderBooksList() {
@@ -102,18 +106,18 @@ export const BooksRoute: FC = () => {
           </>
         );
       })()}
-      {shownForm === "create-book" && (
+      {shownForm.form === "create-book" && (
         <>
           <hr />
-          <CreateBookForm onClose={() => setShownForm(null)} />
+          <CreateBookForm onClose={() => setShownForm({ form: "none" })} />
         </>
       )}
-      {typeof shownForm === "object" && shownForm?.form === "update-book" && (
+      {shownForm.form === "update-book" && (
         <>
           <hr />
           <UpdateBookForm
             bookId={shownForm.bookId}
-            onClose={() => setShownForm(null)}
+            onClose={() => setShownForm({ form: "none" })}
           />
         </>
       )}
