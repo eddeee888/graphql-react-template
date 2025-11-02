@@ -1,28 +1,46 @@
 import { useState, type FC } from "react";
+import { useMutation, useQuery } from "@apollo/client/react";
 import {
   UpdateBookFormBookDoc,
   UpdateBookFormUpdateBookDoc,
 } from "./UpdateBookForm.graphql";
-import { useMutation, useQuery } from "@apollo/client";
 
 export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
   bookId,
   onClose,
 }) => {
-  const [formState, setFormState] = useState<{ isbn: string }>({
-    isbn: "",
-  });
-  const queryBookResult = useQuery(UpdateBookFormBookDoc, {
-    variables: {
-      id: bookId,
-    },
+  const { data, error, loading } = useQuery(UpdateBookFormBookDoc, {
+    variables: { id: bookId },
     fetchPolicy: "cache-and-network",
-    onCompleted: (data) => {
-      if (data.book.__typename === "BookResultOk" && data.book.result) {
-        setFormState({ isbn: data.book.result.isbn });
-      }
-    },
   });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error || !data || data.book.__typename === "ResultError") {
+    return <div>Error</div>;
+  }
+
+  if (!data.book.result) {
+    return <div>Book not found!</div>;
+  }
+
+  return (
+    <Form
+      initialState={{ isbn: data.book.result.isbn }}
+      bookId={bookId}
+      onClose={onClose}
+    />
+  );
+};
+
+const Form: FC<{
+  initialState: { isbn: string };
+  bookId: string;
+  onClose: () => void;
+}> = ({ initialState, bookId, onClose }) => {
+  const [formState, setFormState] = useState<{ isbn: string }>(initialState);
   const [updateBook, updateBookResult] = useMutation(
     UpdateBookFormUpdateBookDoc,
     {
@@ -34,18 +52,6 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
       },
     },
   );
-
-  if (queryBookResult.loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (
-    queryBookResult.error ||
-    !queryBookResult.data ||
-    queryBookResult.data.book.__typename === "ResultError"
-  ) {
-    return <div>Error</div>;
-  }
 
   return (
     <>
@@ -78,9 +84,11 @@ export const UpdateBookForm: FC<{ bookId: string; onClose: () => void }> = ({
           <div>Error occurred. Try again</div>
         ) : null}
         <br />
-        <button type="submit">
-          {updateBookResult.loading ? "..." : "Update book"}
-        </button>{" "}
+        {updateBookResult.loading ? (
+          <button disabled>...</button>
+        ) : (
+          <button type="submit">Update book</button>
+        )}{" "}
         | <button onClick={onClose}>Close</button>
       </form>
     </>
