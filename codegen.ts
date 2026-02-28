@@ -15,6 +15,15 @@ const config: CodegenConfig = {
         nonOptionalTypename: true,
       },
     },
+
+    // TODO: eddeee888 remove before merge
+    "src/operations-standalone/types.generated.ts": {
+      plugins: ["typescript-operations"],
+      config: {
+        nonOptionalTypename: true,
+        skipTypeNameForRoot: true,
+      },
+    },
   },
 };
 
