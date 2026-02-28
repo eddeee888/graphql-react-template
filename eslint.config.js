@@ -8,6 +8,7 @@ export default defineConfig(
     ignores: [
       "dist",
       "src/gql/*.ts",
+      "*.generated.ts", // TODO: eddeee888 remove before merge
       "eslint.config.js",
       "graphql.config.ts",
       "codegen.ts",
