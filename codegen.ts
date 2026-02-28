@@ -24,6 +24,25 @@ const config: CodegenConfig = {
         skipTypeNameForRoot: true,
       },
     },
+
+    // TODO: eddeee888 remove before merge
+    "./src/operations-near-operation-files/__generated__/graphql.ts": {
+      plugins: ["typescript-operations"],
+      config: {
+        generateOperationTypes: false,
+      },
+    },
+    "./src/": {
+      preset: "near-operation-file",
+      presetConfig: { baseTypesPath: "FIXME" }, // FIXME: Fix this in near-operation-file major version
+      plugins: ["typescript-operations"],
+      config: {
+        importSchemaTypesFrom:
+          "./src/operations-near-operation-files/__generated__/graphql.ts",
+        nonOptionalTypename: true,
+        skipTypeNameForRoot: true,
+      },
+    },
   },
 };
 

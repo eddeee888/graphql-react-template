@@ -27,6 +27,7 @@
   "devDependencies": {
     "@eddeee888/eslint-plugin": "1.0.1",
     "@graphql-codegen/cli": "7.0.0-alpha-20260225140323-2e4fe05b9fb89dd1a3334915e4bcf4dcade721fb",
+    "@graphql-codegen/near-operation-file-preset": "4.0.0",
     "@parcel/watcher": "2.5.6",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
