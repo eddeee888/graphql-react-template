@@ -34,7 +34,6 @@ const config: CodegenConfig = {
     },
     "./src/": {
       preset: "near-operation-file",
-      presetConfig: { baseTypesPath: "FIXME" }, // FIXME: Fix this in near-operation-file major version
       plugins: ["typescript-operations"],
       config: {
         importSchemaTypesFrom:
@@ -54,9 +53,8 @@ const config: CodegenConfig = {
     "./src": {
       preset: "near-operation-file",
       presetConfig: {
-        baseTypesPath: "FIXME",
         extension: ".generated-with-doc.tsx",
-      }, // FIXME: Fix this in near-operation-file major version
+      },
       plugins: ["typescript-operations", "typed-document-node"],
       config: {
         importSchemaTypesFrom:

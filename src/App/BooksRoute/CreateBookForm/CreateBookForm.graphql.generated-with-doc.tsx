@@ -1,5 +1,3 @@
-import * as Types from '../../../FIXME';
-
 import type * as Types from '../../../operations-near-operation-files-with-doc/__generated__/graphql';
 
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';

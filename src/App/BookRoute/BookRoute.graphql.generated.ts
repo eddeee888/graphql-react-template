@@ -1,5 +1,3 @@
-import * as Types from '../../FIXME';
-
 import type * as Types from '../../operations-near-operation-files/__generated__/graphql';
 
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
