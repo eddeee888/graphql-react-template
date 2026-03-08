@@ -63,6 +63,19 @@ const config: CodegenConfig = {
         skipTypeNameForRoot: true,
       },
     },
+
+    // TODO: eddeee888 remove before merge
+    src: {
+      preset: "near-operation-file",
+      presetConfig: {
+        extension: ".generated-inline.tsx",
+      },
+      plugins: ["typescript-operations"],
+      config: {
+        nonOptionalTypename: true,
+        skipTypeNameForRoot: true,
+      },
+    },
   },
 };
 
