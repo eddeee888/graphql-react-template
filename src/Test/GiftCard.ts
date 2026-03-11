@@ -1,9 +1,4 @@
-export const MoneyV2 = /* GraphQL */ `
-  fragment MoneyV2 on MoneyV2 {
-    amount
-    currencyCode
-  }
-`;
+import { MoneyV2 } from "./Globals.js";
 
 const GiftCard = /* GraphQL */ `
   fragment GiftCard on GiftCard {
@@ -17,6 +12,7 @@ const GiftCard = /* GraphQL */ `
       ...MoneyV2
     }
   }
+  ${MoneyV2}
 `;
 
 const GiftCardUserError = /* GraphQL */ `
@@ -39,4 +35,6 @@ export const GIFT_CARD_CREATE = /* GraphQL */ `
       }
     }
   }
+  ${GiftCard}
+  ${GiftCardUserError}
 `;
