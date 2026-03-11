@@ -1,7 +1,8 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: "./shopify-2025-04.graphql",
+  // schema: "./shopify-2025-04.graphql",
+  schema: "https://shopify.dev/admin-graphql-direct-proxy/2025-04",
   documents: ["./src/Test/documents.ts", "./src/Test/documents-2.ts"],
   generates: {
     "src/Test/types.generated.ts": {

@@ -400,9 +400,6 @@ export type GiftCardRecipientInput = {
   message?: string | null | undefined;
   /** The preferred name of the recipient. */
   preferredName?: string | null | undefined;
-  /**
-   * The scheduled datetime on which the gift card will be sent to the recipient.
-   * The gift card will be sent within an hour of the specified datetime.
-   */
+  /** The scheduled datetime on which the gift card will be sent to the recipient. The gift card will be sent within an hour of the specified datetime. */
   sendNotificationAt?: unknown;
 };
