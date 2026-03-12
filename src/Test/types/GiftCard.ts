@@ -1,9 +1,8 @@
-import type * as Types from '../types.generated';
+import type { MoneyV2 } from './Globals';
+import type * as Types from './shared.generated';
 
 type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-export type MoneyV2 = { amount: string, currencyCode: Types.CurrencyCode };
-
 export type GiftCard_customer_defaultEmailAddress = { emailAddress: string };
 
 export type GiftCard_customer = { defaultEmailAddress: GiftCard_customer_defaultEmailAddress | null };

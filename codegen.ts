@@ -3,9 +3,9 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 const config: CodegenConfig = {
   // schema: "./shopify-2025-04.graphql",
   schema: "https://shopify.dev/admin-graphql-direct-proxy/2025-04",
-  documents: ["./src/Test/documents.ts", "./src/Test/documents-2.ts"],
+  documents: ["./src/Test/*.ts"],
   generates: {
-    "src/Test/types.generated.ts": {
+    "src/Test/types/shared.generated.ts": {
       plugins: [
         "typescript-operations",
         {
@@ -33,7 +33,7 @@ const config: CodegenConfig = {
         enumType: "native",
         extractAllFieldsToTypes: true,
         extractAllFieldsToTypesCompact: true,
-        importSchemaTypesFrom: "src/Test/types.generated.ts",
+        importSchemaTypesFrom: "src/Test/types/shared.generated.ts",
         inlineFragmentTypes: "combine",
         // mergeFragmentTypes causes issues with shopify tag types even when false
         // when false it generates a lot more but merging them seems to not work
