@@ -11,10 +11,6 @@ const config: CodegenConfig = {
         fragmentMasking: false,
       },
       config: {
-        avoidOptionals: {
-          // Use `null` for nullable fields instead of optionals
-          field: true,
-        },
         skipTypeNameForRoot: true,
         nonOptionalTypename: true,
       },

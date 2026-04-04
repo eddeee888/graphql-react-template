@@ -67,6 +67,18 @@ const Form: FC<{
                 isbn: formState.isbn,
               },
             },
+            optimisticResponse: () => {
+              return {
+                updateBook: {
+                  __typename: "UpdateBookResultOk",
+                  result: {
+                    __typename: "Book",
+                    id: bookId,
+                    isbn: "IOPTIMISITC!",
+                  },
+                },
+              };
+            },
           });
         }}
       >
