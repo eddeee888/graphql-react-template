@@ -5,8 +5,7 @@ export const BookDetailsDoc = graphql(`
     book(id: $bookId) {
       ... on BookResultOk {
         result {
-          id
-          isbn
+          ...BookDetails
           previousBookInSeries {
             id
           }

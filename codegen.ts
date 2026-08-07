@@ -7,9 +7,6 @@ const config: CodegenConfig = {
   generates: {
     "src/gql/": {
       preset: "client",
-      presetConfig: {
-        fragmentMasking: false,
-      },
       config: {
         avoidOptionals: {
           // Use `null` for nullable fields instead of optionals
