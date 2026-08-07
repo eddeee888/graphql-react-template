@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { Link, useParams } from "react-router";
 import { useQuery } from "@apollo/client/react";
 import { BookDetailsDoc } from "./BookRoute.graphql";
+import { BookDetails } from "./BookDetails";
 
 export const BookRoute: FC = () => {
   const { bookId } = useParams<{ bookId: string }>();
@@ -12,10 +13,10 @@ export const BookRoute: FC = () => {
     return null;
   }
 
-  return <BookDetails bookId={bookId} />;
+  return <BookPage bookId={bookId} />;
 };
 
-const BookDetails: FC<{ bookId: string }> = ({ bookId }) => {
+const BookPage: FC<{ bookId: string }> = ({ bookId }) => {
   const { data, loading, error } = useQuery(BookDetailsDoc, {
     variables: { bookId },
     fetchPolicy: "cache-and-network",
@@ -37,10 +38,7 @@ const BookDetails: FC<{ bookId: string }> = ({ bookId }) => {
 
   return (
     <>
-      <h1>Book (ID: {book.id})</h1>
-      <div>
-        ISBN: <b>{book.isbn}</b>
-      </div>
+      <BookDetails book={book} />
 
       <hr />
 

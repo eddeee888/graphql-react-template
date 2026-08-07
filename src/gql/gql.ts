@@ -14,14 +14,16 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query BookDetails($bookId: ID!) {\n    book(id: $bookId) {\n      ... on BookResultOk {\n        result {\n          id\n          isbn\n          previousBookInSeries {\n            id\n          }\n          nextBookInSeries {\n            id\n          }\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": typeof types.BookDetailsDocument,
+    "\n  fragment BookDetails on Book {\n    id\n    isbn\n  }\n": typeof types.BookDetailsFragmentDoc,
+    "\n  query BookDetails($bookId: ID!) {\n    book(id: $bookId) {\n      ... on BookResultOk {\n        result {\n          ...BookDetails\n          previousBookInSeries {\n            id\n          }\n          nextBookInSeries {\n            id\n          }\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": typeof types.BookDetailsDocument,
     "\n  query Books($input: PaginationInput!) {\n    books(input: $input) {\n      ... on BooksResultOk {\n        result {\n          id\n          isbn\n        }\n        pagination {\n          totalPageCount\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": typeof types.BooksDocument,
     "\n  mutation CreateBook($input: CreateBookInput!) {\n    createBook(input: $input) {\n      ... on CreateBookResultOk {\n        result {\n          id\n          isbn\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": typeof types.CreateBookDocument,
     "\n  query UpdateBookForm_Book($id: ID!) {\n    book(id: $id) {\n      ... on BookResultOk {\n        result {\n          id\n          isbn\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": typeof types.UpdateBookForm_BookDocument,
     "\n  mutation UpdateBookForm_UpdateBook($input: UpdateBookInput!) {\n    updateBook(input: $input) {\n      ... on UpdateBookResultOk {\n        result {\n          id\n          isbn\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": typeof types.UpdateBookForm_UpdateBookDocument,
 };
 const documents: Documents = {
-    "\n  query BookDetails($bookId: ID!) {\n    book(id: $bookId) {\n      ... on BookResultOk {\n        result {\n          id\n          isbn\n          previousBookInSeries {\n            id\n          }\n          nextBookInSeries {\n            id\n          }\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": types.BookDetailsDocument,
+    "\n  fragment BookDetails on Book {\n    id\n    isbn\n  }\n": types.BookDetailsFragmentDoc,
+    "\n  query BookDetails($bookId: ID!) {\n    book(id: $bookId) {\n      ... on BookResultOk {\n        result {\n          ...BookDetails\n          previousBookInSeries {\n            id\n          }\n          nextBookInSeries {\n            id\n          }\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": types.BookDetailsDocument,
     "\n  query Books($input: PaginationInput!) {\n    books(input: $input) {\n      ... on BooksResultOk {\n        result {\n          id\n          isbn\n        }\n        pagination {\n          totalPageCount\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": types.BooksDocument,
     "\n  mutation CreateBook($input: CreateBookInput!) {\n    createBook(input: $input) {\n      ... on CreateBookResultOk {\n        result {\n          id\n          isbn\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": types.CreateBookDocument,
     "\n  query UpdateBookForm_Book($id: ID!) {\n    book(id: $id) {\n      ... on BookResultOk {\n        result {\n          id\n          isbn\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n": types.UpdateBookForm_BookDocument,
@@ -45,7 +47,11 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query BookDetails($bookId: ID!) {\n    book(id: $bookId) {\n      ... on BookResultOk {\n        result {\n          id\n          isbn\n          previousBookInSeries {\n            id\n          }\n          nextBookInSeries {\n            id\n          }\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n"): (typeof documents)["\n  query BookDetails($bookId: ID!) {\n    book(id: $bookId) {\n      ... on BookResultOk {\n        result {\n          id\n          isbn\n          previousBookInSeries {\n            id\n          }\n          nextBookInSeries {\n            id\n          }\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  fragment BookDetails on Book {\n    id\n    isbn\n  }\n"): (typeof documents)["\n  fragment BookDetails on Book {\n    id\n    isbn\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query BookDetails($bookId: ID!) {\n    book(id: $bookId) {\n      ... on BookResultOk {\n        result {\n          ...BookDetails\n          previousBookInSeries {\n            id\n          }\n          nextBookInSeries {\n            id\n          }\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n"): (typeof documents)["\n  query BookDetails($bookId: ID!) {\n    book(id: $bookId) {\n      ... on BookResultOk {\n        result {\n          ...BookDetails\n          previousBookInSeries {\n            id\n          }\n          nextBookInSeries {\n            id\n          }\n        }\n      }\n      ... on ResultError {\n        error\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
