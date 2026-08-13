@@ -12,5 +12,5 @@ Check out GraphQL server template: https://github.com/eddeee888/graphql-server-t
 ## Commands
 
 ```bash
-yarn dev # Start Codegen and Server in watch mode
+pnpm dev # Start Codegen and Server in watch mode
 ```
